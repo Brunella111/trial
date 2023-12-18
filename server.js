@@ -7,9 +7,16 @@ const app = express();
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
-app.get('/',(req,res) =>{
-    res.send('hey there')
+app.get('/patient',async(req,res) => {
+    try {
+        const product = await Patient.find({});
+        res.status(200).json( patient)
+    } catch (error) { 
+        res.status(500).json({message: error.message});
+    }
 })
+
+
 
 
 mongoose.
